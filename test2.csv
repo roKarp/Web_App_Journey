@@ -1,0 +1,28 @@
+DepartureID,DepartureStation,ReturnID,ReturnStation,Distance,Duration
+113,Pasilan asema,78,Messeniuksenkatu,1602,553
+135,Velodrominrinne,115,Venttiilikuja,1307,532
+258,Abraham Wetterin tie,260,Herttoniemi (M),820,205
+122,Lintulahdenkatu,16,Liisanpuistikko,1298,369
+126,Kalasatama (M),255,Laivalahden puistotie,3875,912
+347,Sateenkaarentie,344,Puistolan asema,1698,410
+347,Sateenkaarentie,344,Puistolan asema,1658,416
+21,T��l�nlahdenkatu,58,Lauttasaarensilta,3150,649
+87,Kustaankatu,95,Munkkiniemen aukio,4835,1509
+121,Vilhonvuorenkatu,404,Sompasaari,865,273
+120,M�kel�nkatu,141,Intiankatu,2119,552
+161,Etel�esplanadi,31,Marian sairaala,2352,959
+259,Petter Wetterin tie,254,Agnetankuja,880,277
+581,Niittykumpu (M),581,Niittykumpu (M),14,126
+87,Kustaankatu,58,Lauttasaarensilta,5954,1513
+161,Etel�esplanadi,31,Marian sairaala,2450,959
+19,Rautatientori / it�,76,Olympiastadion,2199,452
+78,Messeniuksenkatu,140,Verkatehtaanpuisto,5131,1397
+64,Tyynenmerenkatu,202,Merihaka,4925,1564
+123,N�kinsilta,19,Rautatientori / it�,1813,2408
+123,N�kinsilta,19,Rautatientori / it�,1852,1888
+161,Etel�esplanadi,31,Marian sairaala,2289,1027
+120,M�kel�nkatu,94,Laajalahden aukio,5646,1479
+116,Linnanm�ki,113,Pasilan asema,1080,422
+131,Elim�enkatu,35,Cygnaeuksenkatu,3755,1096
+98,Ulvilantie,727,Ratsutori,4496,967
+93,Torpanranta,98,Ulvilantie,5214,1652

@@ -1,0 +1,34 @@
+version: "3.4"
+
+services:
+  back: #Our container for the backend. Still under construction
+    build: back
+    image: back
+    restart: "no"
+    volumes:
+      - ./back/:/app
+      - ./app-cache/:/app-cache
+    ports:
+      - 7777:7777
+    depends_on:
+      - database
+      - flyway
+    env_file:
+      - project.env
+  database: #creates a container based on postgres, which holds the sql table
+    container_name: database-server
+    image: postgres:14.1
+    restart: "no"
+    env_file:
+      - project.env
+
+
+  flyway: #creates the initial table(s) based on /flyway/sql/V1___initial_schema.sql
+    image: flyway/flyway:9.11.0-alpine
+    depends_on:
+      - database
+    volumes:
+      - ./flyway/sql/:/flyway/sql
+    command: -connectRetries=60 -baselineOnMigrate=true migrate
+    env_file:
+      - project.env
