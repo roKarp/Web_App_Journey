@@ -1,6 +1,7 @@
-import { postgres } from "./deps.js";
-
-const sql = postgres({});
+import {serve} from "./deps.js";
+//import { postgres } from "./deps.js";
+import * as journeyService from "./services/journeyService.js"
+//const sql = postgres({});
 
 const handleGetRoot = async (request) => {
   return new Response("This is the root...\nnot much to see here :|\n");
@@ -8,13 +9,17 @@ const handleGetRoot = async (request) => {
 
 const handleGetJourney = async (request, urlPatternResult) => {
   const id = urlPatternResult.pathname.groups.id;
-  const stations = await sql`SELECT * FROM journey WHERE id = ${id}`;
-
-  return Response.json(stations[0]);
+  const stations = await journeyService.getJourney(id);
+  if (stations != 0) {
+    return Response.json(stations[0]);
+}
+else {
+    return new Response("journey not found", { status: 404 });
+}
 };
 
 const handleGetJourneys = async (request) => {
-  const items = await sql`SELECT * FROM journey`;
+  const items = await journeyService.getJourneys();
   return Response.json(items);
 };
 
@@ -50,5 +55,4 @@ const handleRequest = async (request) => {
   return await mapping.fn(request, mappingResult);
 };
 
-const portConfig = { port: 7777, hostname: '0.0.0.0' };
-Deno.serve(portConfig, handleRequest);
+serve(handleRequest, {port: 7777});

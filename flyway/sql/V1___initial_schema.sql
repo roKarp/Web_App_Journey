@@ -4,6 +4,6 @@ CREATE TABLE journey (
     DepartureStation TEXT NOT NULL,
     ReturnID INT NOT NULL,
     ReturnStation TEXT NOT NULL,
-    Distance INT NOT NULL,
-    Duration INT NOT NULL
+    Distance FLOAT NOT NULL,
+    Duration FLOAT NOT NULL
 ); 
