@@ -21,6 +21,7 @@ d = pd.read_csv(in_f)
 d = d.rename(columns=mapping)
 d = d.drop(columns=remove)
 d = d[d['Distance'] >= min_dis]
+d['Distance'] = d['Distance'].div(1000)
 d = d[d['Duration'] >= min_dur]
-
+d['Duration'] = d['Duration'].div(60).round(1)
 d.to_csv(out_f, index=False)
