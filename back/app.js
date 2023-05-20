@@ -9,12 +9,8 @@ const handleGetRoot = async (request) => {
 const handleGetJourney = async (request, urlPatternResult) => {
   const id = urlPatternResult.pathname.groups.id;
   const stations = await sql`SELECT * FROM journey WHERE id = ${id}`;
-  if (stations != 0) {
+
   return Response.json(stations[0]);
-  }
-  else {
-    return new Response("Journey not found", { status: 404 });
-}
 };
 
 const handleGetJourneys = async (request) => {

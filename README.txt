@@ -22,7 +22,7 @@ docker exec -it database-server psql -U username database
 
 This opens the psql console, where we will import the data to the table 'journey'.
 Type to the psql console:
-\copy journey (DepartureID, DepartureStation, ReturnID, ReturnStation, Distance, Duration) FROM '/var/lib/postgresql/data/test2.csv' DELIMITER ',' CSV HEADER;
+\copy journey (DepartureID, ReturnID, DepartureStation, ReturnStation, Distance, Duration) FROM '/var/lib/postgresql/data/test2.csv' DELIMITER ',' CSV HEADER;
 
 If everything went according to plan, you should be able to see:
 COPY <some amount of numbers>
