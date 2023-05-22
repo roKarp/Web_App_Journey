@@ -1,10 +1,9 @@
 import {serve} from "./deps.js";
-//import { postgres } from "./deps.js";
 import * as journeyService from "./services/journeyService.js"
-//const sql = postgres({});
+import * as stationService from "./services/stationService.js"
 
 const handleGetRoot = async (request) => {
-  return new Response("This is the root...\nnot much to see here :|\n");
+  return new Response("This is the secret backend root :D ...\nnot much to see here though :|\n");
 };
 
 const handleGetJourney = async (request, urlPatternResult) => {
@@ -23,6 +22,23 @@ const handleGetJourneys = async (request) => {
   return Response.json(items);
 };
 
+const handleGetStations = async (request) => {
+  const items = await stationService.getStations();
+  return Response.json(items);
+};
+
+const handleGetStation = async (request, urlPatternResult) => {
+  const id = urlPatternResult.pathname.groups.id;
+  const stations = await stationService.getStation(id);
+  if (stations != 0) {
+    return Response.json(stations[0]);
+}
+else {
+    return new Response("Station not found", { status: 404 });
+}
+};
+
+
 
 const urlMapping = [
   {
@@ -39,6 +55,17 @@ const urlMapping = [
     method: "GET",
     pattern: new URLPattern({ pathname: "/" }),
     fn: handleGetRoot,
+  },
+
+  {
+    method: "GET",
+    pattern: new URLPattern({ pathname: "/stations/:id" }),
+    fn: handleGetStation,
+  },
+  {
+    method: "GET",
+    pattern: new URLPattern({ pathname: "/stations" }),
+    fn: handleGetStations,
   },
 ];
 
