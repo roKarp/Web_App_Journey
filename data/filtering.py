@@ -16,20 +16,23 @@ mapping = {
 }
 
 remove = ['Return', 'Departure']
-
-d = pd.read_csv(in_f)
-d['Departure'] = pd.to_datetime(d['Departure'], errors='coerce') #Verifies that the first two columns are DateTime
-d['Return'] = pd.to_datetime(d['Return'], errors='coerce')
-d = d[pd.notnull(d['Departure'])]
-d = d[pd.notnull(d['Return'])]
-d = d[d['Departure'] < d['Return']] #Checks that Return is after Departure
-print(d)
-d = d.rename(columns=mapping)
-d = d.drop(columns=remove)
-d = d[d['DepartureID'] > 0] #Checks that the id's are valid
-d = d[d['ReturnID'] > 0]
-d = d[d['Distance'] >= min_dis] #Checks the minimum distance
-d['Distance'] = d['Distance'].div(1000)
-d = d[d['Duration'] >= min_dur] #Checks the minimum duration
-d['Duration'] = d['Duration'].div(60).round(1)
+chunks = 10 ** 8
+d = pd.read_csv(in_f, chunksize=chunks) # process
+li = []
+for dc in d:
+    dc['Departure'] = pd.to_datetime(dc['Departure'], errors='coerce') #Verifies that the first two columns are DateTime
+    dc['Return'] = pd.to_datetime(dc['Return'], errors='coerce')
+    dc = dc[pd.notnull(dc['Departure'])]
+    dc = dc[pd.notnull(dc['Return'])]
+    dc = dc[dc['Departure'] < dc['Return']] #Checks that Return is after Departure
+    dc = dc.rename(columns=mapping)
+    dc = dc.drop(columns=remove)
+    dc = dc[dc['DepartureID'] > 0] #Checks that the id's are valid
+    dc = dc[dc['ReturnID'] > 0]
+    dc = dc[dc['Distance'] >= min_dis] #Checks the minimum distance
+    dc['Distance'] = dc['Distance'].div(1000)
+    dc = dc[dc['Duration'] >= min_dur] #Checks the minimum duration
+    dc['Duration'] = dc['Duration'].div(60).round(1)
+    li += [dc.copy()]
+d = pd.concat(li)
 d.to_csv(out_f, index=False)
