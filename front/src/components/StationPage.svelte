@@ -14,7 +14,7 @@
 </script>
 
 <main>
-<a href="/">List of Journeys</a>
+<a href="/journeys">List of Journeys</a>
 <a href="/stations">List of Stations</a>
 {#await stationsPromise}
 <p>Loading station information</p>

@@ -10,6 +10,18 @@ import Journeys from "../components/Journeys.svelte";
 		<meta name="generator" content={Astro.generator} />
 	</head>
 	<body>
-		<Journeys client:load />
+		<h1>Welcome to the bicycle journey infromation application</h1>
+		<p text-align="center">What would you wish to inspect?</p>
+		<ul>
+			<li><a href="/journeys">List of Journeys</a></li>
+			<li><a href="/stations">List of Stations</a></li>
+		</ul>
 	</body>
 </html>
+
+
+<style>
+	h1 {
+    text-align: center;
+}
+</style>
