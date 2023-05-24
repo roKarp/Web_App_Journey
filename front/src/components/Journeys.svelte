@@ -1,14 +1,20 @@
 <script>
+  export let page;
+  let p = parseInt(page);
+  let offset = (p - 1)*20;
+
+  let path = "/api/journeys/" + offset.toString();
   const getJourneys = async () => {
-    const response = await fetch("/api/journeys");
+    const response = await fetch(path);
     return await response.json();
   };
-
   let journeysPromise = getJourneys();
 
 </script>
-
-<a href="/stations">List of Stations</a>
+<ul>
+<li><a href="/journeys">List of Journeys (first page)</a></li>
+<li><a href="/stations">List of Stations</a></li>
+</ul>
 <h1>Journeys</h1>
 {#await journeysPromise}
   <p>Loading all journeys</p>
@@ -16,45 +22,66 @@
   {#if journeys.length == 0}
     <p>No journeys recorded</p>
   {:else}
+  {#if Number.isInteger(p)}
+    {#if p != 1}
+    <p class="a"><a href="/journeys?page={p - 1}">Last page</a></p>
+    {/if}
+    {#if journeys.length /21 == 1 }
+    <p class="b"><a href="/journeys?page={p + 1}">Next page</a></p>
+    {/if}
   <div class="grid-container">
-    <ol>
+    <ol style="list-style-type: none">
         <h3 class="b">Departure Station</h3>
-      {#each journeys as journey}
-        <li class="a">{journey.departurestation}  
+      {#each journeys as journey, i}
+        {#if i != 20}
+        <li class="a">{journey.id}: {journey.departurestation}  
         </li>
         <hr>
+        {/if}
       {/each}
     </ol>
 
     <ol style="list-style-type: none">
         <h3 class="b">Return Station</h3>
-      {#each journeys as journey}
+      {#each journeys as journey, i}
+        {#if i != 20}
         <li class="a">{journey.returnstation}  
         </li>
         <hr>
+        {/if}
       {/each}
     </ol>
 
     <ol style="list-style-type: none">
         <h3 class="b">Distance (km)</h3>
-      {#each journeys as journey}
+      {#each journeys as journey, i}
+        {#if i != 20}
         <li class="b">{journey.distance}  
         </li>
         <hr>
+        {/if}
       {/each}
     </ol>
 
     <ol style="list-style-type: none">
         <h3 class="b">Duration (min)</h3>
-      {#each journeys as journey}
+      {#each journeys as journey, i}
+        {#if i != 20}
         <li class="b">{journey.duration}  
         </li>
         <hr>
+        {/if}
       {/each}
     </ol>
 
   </div>
+
+  {:else}
+  <p>{journey[0].error}<p>
   {/if}
+  {/if}
+{:catch error}
+    <p>Invalid page parameter</p>
 {/await}
 
 
@@ -97,6 +124,13 @@ li.b {
 li.a {
     margin-right: 10px;
     margin-left: 10px;
+}
+
+p.a {
+    text-align: left;
+}
+p.b {
+    text-align: right;
 }
 
 </style>

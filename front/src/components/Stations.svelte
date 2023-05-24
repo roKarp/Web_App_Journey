@@ -8,7 +8,9 @@
 
 </script>
 
-<a href="/">List of Journeys</a>
+<ul>
+<li><a href="/journeys">List of Journeys (first page)</a></li>
+</ul>
 <h1>Stations</h1>
 {#await stationsPromise}
   <p>Loading all stations</p>

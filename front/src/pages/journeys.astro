@@ -1,5 +1,5 @@
 ---
-import Journeys2 from "../components/Journeys2.svelte";
+import Journeys from "../components/Journeys.svelte";
 const page = Astro.url.searchParams.get('page')! || 1;
 ---
 
@@ -11,6 +11,6 @@ const page = Astro.url.searchParams.get('page')! || 1;
 		<meta name="generator" content={Astro.generator} />
 	</head>
 	<body>
-		<Journeys2 client:load page={page}/>
+		<Journeys client:load page={page}/>
 	</body>
 </html>

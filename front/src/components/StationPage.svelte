@@ -14,8 +14,10 @@
 </script>
 
 <main>
-<a href="/journeys">List of Journeys</a>
-<a href="/stations">List of Stations</a>
+<ul>
+<li><a href="/journeys">List of Journeys (first page)</a></li>
+<li><a href="/stations">List of Stations</a></li>
+</ul>
 {#await stationsPromise}
 <p>Loading station information</p>
 {:then station}
