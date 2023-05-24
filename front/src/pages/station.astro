@@ -1,6 +1,9 @@
 ---
----
 
+  import StationPage from "../components/StationPage.svelte"
+  const id = Astro.url.searchParams.get('id')! || '';
+---
+<!--<p>{id}</p>-->
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -8,7 +11,7 @@
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 	</head>
-	<body>
-		<h1> This is a test </h1>
-	</body>
+<body>
+<StationPage client:load id={id}/>
+</body>
 </html>

@@ -8,7 +8,7 @@
 
 </script>
 
-
+<a href="/stations">List of Stations</a>
 <h1>Journeys</h1>
 {#await journeysPromise}
   <p>Loading all journeys</p>
