@@ -2,8 +2,11 @@ import { postgres } from "../deps.js";
 
 const sql = postgres({});
 
-  const getJourney = async (id) => {
-    return sql`SELECT * FROM journey WHERE id = ${id}`;
+  const getJourney = async (page) => {
+    return sql`SELECT * FROM journey 
+    ORDER BY id
+    LIMIT 21
+    OFFSET ${page}`;
   };
   
   const getJourneys = async () => {

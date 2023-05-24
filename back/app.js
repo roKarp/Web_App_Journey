@@ -7,10 +7,10 @@ const handleGetRoot = async (request) => {
 };
 
 const handleGetJourney = async (request, urlPatternResult) => {
-  const id = urlPatternResult.pathname.groups.id;
-  const stations = await journeyService.getJourney(id);
+  const page = urlPatternResult.pathname.groups.page;
+  const stations = await journeyService.getJourney(page);
   if (stations != 0) {
-    return Response.json(stations[0]);
+    return Response.json(stations);
 }
 else {
     return new Response("journey not found", { status: 404 });
@@ -43,7 +43,7 @@ else {
 const urlMapping = [
   {
     method: "GET",
-    pattern: new URLPattern({ pathname: "/journeys/:id" }),
+    pattern: new URLPattern({ pathname: "/journeys/:page" }),
     fn: handleGetJourney,
   },
   {
