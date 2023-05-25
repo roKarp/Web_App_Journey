@@ -5,11 +5,10 @@
   };
 
   let stationsPromise = getStations();
-
 </script>
 
 <ul>
-<li><a href="/journeys">List of Journeys (first page)</a></li>
+  <li><a href="/journeys">List of Journeys (first page)</a></li>
 </ul>
 <h1>Stations</h1>
 {#await stationsPromise}
@@ -19,40 +18,35 @@
     <p>No stations found</p>
   {:else}
     <ol>
-        <h3 class="b">Station Name/Address</h3>
+      <h3 class="b">Station Name/Address</h3>
       {#each stations as station}
-        <li class="a">{station.s_name} <a href="/station?id={station.id}">Info</a>
+        <li class="a">
+          {station.s_name} <a href="/station?id={station.id}">Info</a>
         </li>
       {/each}
     </ol>
   {/if}
 {/await}
 
-
 <style>
-
-
-:global(body) {
-    background-color: deeporange;
+  :global(body) {
+    background-color: brown;
     color: black;
-}
+  }
 
-
-h1 {
+  h1 {
     text-align: center;
-}
+  }
 
-
-h3.b {
+  h3.b {
     margin-top: 50px;
     margin-bottom: 20px;
     margin-right: 10px;
     margin-left: 10px;
-}
+  }
 
-li.a {
+  li.a {
     margin-right: 10px;
     margin-left: 10px;
-}
-
+  }
 </style>
