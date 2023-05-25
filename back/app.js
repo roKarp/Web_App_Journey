@@ -1,9 +1,11 @@
-import {serve} from "./deps.js";
-import * as journeyService from "./services/journeyService.js"
-import * as stationService from "./services/stationService.js"
+import { serve } from "./deps.js";
+import * as journeyService from "./services/journeyService.js";
+import * as stationService from "./services/stationService.js";
 
 const handleGetRoot = async (request) => {
-  return new Response("This is the secret backend root :D ...\nnot much to see here though :|\n");
+  return new Response(
+    "This is the secret backend root :D ...\nnot much to see here though :|\n"
+  );
 };
 
 const handleGetJourney = async (request, urlPatternResult) => {
@@ -11,10 +13,9 @@ const handleGetJourney = async (request, urlPatternResult) => {
   const stations = await journeyService.getJourney(page);
   if (stations != 0) {
     return Response.json(stations);
-}
-else {
+  } else {
     return new Response("journey not found", { status: 404 });
-}
+  }
 };
 
 const handleGetJourneys = async (request) => {
@@ -32,13 +33,10 @@ const handleGetStation = async (request, urlPatternResult) => {
   const stations = await stationService.getStation(id);
   if (stations != 0) {
     return Response.json(stations[0]);
-}
-else {
+  } else {
     return new Response("Station not found", { status: 404 });
-}
+  }
 };
-
-
 
 const urlMapping = [
   {
@@ -82,4 +80,4 @@ const handleRequest = async (request) => {
   return await mapping.fn(request, mappingResult);
 };
 
-serve(handleRequest, {port: 7777});
+serve(handleRequest, { port: 7777 });
