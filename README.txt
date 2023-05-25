@@ -25,9 +25,14 @@ Type to the psql console:
 If everything went according to plan, you should be able to see:
 COPY <some amount of numbers>
 
+In order to add into the "station" table, use the following commands:
+INSERT INTO station (id,s_name) SELECT DISTINCT DepartureID, DepartureStation FROM journey;
+
+INSERT INTO station (id, s_name) SELECT DISTINCT r.ReturnID, r.ReturnStation FROM journey r WHERE r.ReturnID NOT IN (SELECT id FROM station);
+
 From my initial testing, this worked for the data importing.
 If you want to test if it works in it's current state, exit the psql console (\q) and type:
-curl "localhost:7800/journeys"
+curl "localhost:7800/api/journeys"
 This should output every journey that was imported to the table 'journey'
 
 To be continued...
