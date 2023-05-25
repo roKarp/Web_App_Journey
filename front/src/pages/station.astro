@@ -1,17 +1,27 @@
 ---
-
-  import StationPage from "../components/StationPage.svelte"
-  const id = Astro.url.searchParams.get('id')! || '';
+import StationPage from "../components/StationPage.svelte";
+const id = Astro.url.searchParams.get("id")! || "";
 ---
-<!--<p>{id}</p>-->
+
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-	</head>
-<body>
-<StationPage client:load id={id}/>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <StationPage client:load id={id} />
+  </body>
 </html>
+
+<style>
+  h1 {
+    text-align: center;
+  }
+
+  :global(body) {
+    background-color: yellowgreen;
+    color: black;
+  }
+</style>
