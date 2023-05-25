@@ -1,6 +1,6 @@
 import pandas as pd
 
-in_f = 'test.csv'
+in_f = '<your_csv_file>'
 out_f = 'test2.csv'
 
 min_dur = 10
