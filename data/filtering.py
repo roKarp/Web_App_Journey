@@ -1,7 +1,7 @@
 import pandas as pd
 
 in_f = '<your_csv_file>'
-out_f = '<name_your_output_file>'
+out_f = 'filtered.csv'
 
 min_dur = 10
 min_dis = 10
