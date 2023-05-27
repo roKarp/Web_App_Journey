@@ -1,7 +1,7 @@
 import pandas as pd
 
 in_f = '<your_csv_file>'
-out_f = 'test2.csv'
+out_f = '<name_your_output_file>'
 
 min_dur = 10
 min_dis = 10
