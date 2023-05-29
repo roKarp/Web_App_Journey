@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo This bash script outputs the station information based on the id given
+
+curl localhost:7800/api/stations/$1
+
+echo ;

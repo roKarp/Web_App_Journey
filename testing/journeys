@@ -1,0 +1,6 @@
+#!/bin/bash
+echo This bash script outputs the first page of the journeys webpage
+
+curl "localhost:7800/api/journeys/1"
+
+echo ;
