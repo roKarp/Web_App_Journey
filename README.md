@@ -8,7 +8,7 @@ Basics of how it works can be found there, but it has been changed from its init
 
 ## Basic information
 
-The basic functionality of the application works as instructed within the Solitas Dev Academy assignment https://github.com/solita/dev-academy-2023-exercise.
+The basic functionality of the application works as instructed within the Solitas Dev Academy assignment https://github.com/solita/dev-academy-2023-exercise. It displays different city bike journeys and stations from two database tables: `journey` and `station`. You can also view more information about individual stations.
 
 This web application uses a docker based backend for all the database commands, and an Astro + Svelte frontend. Once the application is up and running in docker, it can be accessed from the url:
  ```
@@ -96,6 +96,9 @@ INSERT INTO station (id, s_name) SELECT DISTINCT r.ReturnID, r.ReturnStation FRO
 Now just exit the psql console by: `\q`
 
   And the web application is now ready to be used!
+
+### Bonus information
+The located .env file is primarily used for local environment usage. If you desire to not use it locally, then just change the values to your own.
   
 ## Testing
 
@@ -114,4 +117,13 @@ There are a few bash scripts in the **testing** folder, which you also use Curl 
 In case you want to play around the frontend, open a browser (I like to use FireFox :D) and a tab with `localhost:7800`. This should open the root page of the application which navigates you to either the `stations` page or `journeys` page. The webpage also has an error 404 page within it, where you get transfered to if you decide to open a page that doesn't exist. 
   
 
-Go ahead and give it a try :)
+ ## Desired improvements
+While the application works quite well, and I am personally happy with it, there are still areas I would like to improve upon:
+ - Better importing csv file and it's contents to the database
+ - Improving the automated testing side (E2E)
+ - Improving pagination
+ - Adding a feature for inputing stations and journeys from the UI
+ - Filtering for journeys and stations
+ 
+ 
+ But overall I am satisfied with the results. Go ahead and give it a try :)
