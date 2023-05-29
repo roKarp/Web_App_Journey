@@ -13,7 +13,7 @@
 
 <ul>
   <li><a href="/journeys">List of Journeys (first page)</a></li>
-  <li><a href="/stations">List of Stations</a></li>
+  <li><a href="/stations">List of Stations (first page)</a></li>
 </ul>
 <h1>Journeys</h1>
 {#await journeysPromise}
@@ -23,7 +23,7 @@
     <p>No journeys recorded</p>
   {:else if Number.isInteger(p)}
     {#if p != 1}
-      <p class="a"><a href="/journeys?page={p - 1}">Last page</a></p>
+      <p class="a"><a href="/journeys?page={p - 1}">Previous page</a></p>
     {/if}
     {#if journeys.length / 21 == 1}
       <p class="b"><a href="/journeys?page={p + 1}">Next page</a></p>
